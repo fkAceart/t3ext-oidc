@@ -103,6 +103,7 @@ class OidcLinkViewHelper extends AbstractViewHelper
         ]);
 
         $loginUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
+
         // Sanitize the URL
         $parts = parse_url($loginUrl);
         $queryParts = array_filter(explode('&', $parts['query']), function ($v) {
@@ -116,6 +117,7 @@ class OidcLinkViewHelper extends AbstractViewHelper
             $loginUrl .= ':' . $parts['port'];
         }
         $loginUrl .= $parts['path'];
+
         if (!empty($parts['query'])) {
             $loginUrl .= '?' . $parts['query'];
         }
