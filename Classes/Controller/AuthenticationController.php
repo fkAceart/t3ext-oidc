@@ -53,6 +53,7 @@ class AuthenticationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
      */
     public function connectAction()
     {
+
         static::getLogger()->debug('Initiating the silent authentication');
         if ((empty($_GET['state']) || empty($_GET['code']))) {
             static::getLogger()->error('No state or code detected', ['GET' => $_GET]);
