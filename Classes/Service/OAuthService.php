@@ -177,6 +177,34 @@ class OAuthService
      * Revokes the access token.
      *
      * @param AccessToken $token
+     */
+    public function logoutUser(AccessToken $token)
+    {
+        if (empty($this->settings['oidcEndpointLogout'])) {
+            return false;
+        }
+
+        $provider = $this->getProvider();
+        $request = $provider->getRequest(
+            \League\OAuth2\Client\Provider\AbstractProvider::METHOD_POST,
+            $this->settings['oidcEndpointLogout'],
+            [
+                'headers' => [
+                    'Authorization' => 'Basic ' . base64_encode($this->settings['oidcClientKey'] . ':' . $this->settings['oidcClientSecret']),
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
+                'body' => 'token=' . $token->getToken(),
+            ]
+        );
+        $response = $provider->getParsedResponse($request);
+
+        return $response;
+    }
+
+    /**
+     * Revokes the access token.
+     *
+     * @param AccessToken $token
      * @return bool
      */
     public function revokeToken(AccessToken $token)
