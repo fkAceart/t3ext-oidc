@@ -24,7 +24,7 @@ if (!(empty($_GET['state']) || empty($_GET['code']))) {
 
 
     $currentUrl = $schema . $host;
-    if ($_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !== '443') {
+    if (!str_contains($host, ":") &&  $_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !== '443') {
         $currentUrl .= ':' . $_SERVER['SERVER_PORT'];
     }
     $currentUrl .= $_SERVER['REQUEST_URI'];

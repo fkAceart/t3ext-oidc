@@ -33,7 +33,7 @@ class OidcLinkViewHelper extends AbstractViewHelper
      * @param RenderingContextInterface $renderingContext
      * @return string link
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext = null)
     {
 
         $requestId = self::getUniqueId();
